@@ -23,6 +23,10 @@ public class Department {
         }
     }
 
+    public static Department getDepartment(int index){
+        return departments.get(index);
+    }
+
     public static ArrayList<Department> showDepartments(){
         return departments;
     }
