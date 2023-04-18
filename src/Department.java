@@ -4,7 +4,7 @@ public class Department {
     private String name;
     private static ArrayList<Department> departments = new ArrayList<Department>();
 
-    private Department(String name) throws NotUniqueException{
+    Department(String name) throws NotUniqueException{
         for (Department dep: departments) {
             if(dep.name == name) throw new NotUniqueException("Department already exist");
         }
@@ -12,11 +12,12 @@ public class Department {
     }
 
 
-    public static void createDepartment(String name){
+    public static Department createDepartment(String name){
         try {
             Department created = new Department(name);
             departments.add(created);
             System.out.println("Department " + name + " created!!");
+            return created;
         } catch (NotUniqueException e) {
             System.out.println("Cannot create department: " + name);
             throw new RuntimeException(e);
