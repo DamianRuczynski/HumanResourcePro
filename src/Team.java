@@ -55,4 +55,12 @@ public class Team {
     public boolean haveIllEmployee(){
         return employees.stream().anyMatch(emp -> !emp.healthy);
     }
+
+    public void startTask(String name){
+        if(haveIllEmployee()) {
+            System.out.println("nie mozna wykonac zadania, poniewaz nie");
+            return;
+        }
+        this.tasks.stream().filter(e -> e.name.equals(name)).forEach(e -> e.run());
+    }
 }
