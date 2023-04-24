@@ -27,14 +27,14 @@ public class Main {
         teamm.addTask(zadanko2);
 //        zadanko2.run();
 
-        teamm.startTask("Testowe zadanie");
+//        teamm.startTask("Testowe zadanie");
         teamm.startTask("Bithces drip sossy");
 
         // Wyswietlanie list taskow, pracownikow itd...
-        System.out.println("------------");
-        System.out.println(zadanko);
-
-        System.out.println(teamm.getTasks());
+//        System.out.println("------------");
+//        System.out.println(zadanko);
+//
+//        System.out.println(teamm.getTasks());
 
         /// NA POZNIEJ ZROB COS CO DZIALA JAK APLIKACJA
 
