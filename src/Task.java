@@ -4,6 +4,8 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 
 public class Task extends Thread {
+    static int counter = 0;
+    int id;
     String name;
     String desc;
     Status status;
@@ -12,8 +14,17 @@ public class Task extends Thread {
     int durationTime = (int) ((Math.random() * 6) + 3);
 
     Task(String name) {
+        this.id = counter;
+        counter++;
         this.name = name;
         this.desc = "";
+        this.status = status.NEW;
+    }
+    Task(String name, String desc) {
+        this.id = counter;
+        counter++;
+        this.name = name;
+        this.desc = desc;
         this.status = status.NEW;
     }
 
@@ -58,5 +69,9 @@ public class Task extends Thread {
             this.status = Status.NEW;
             this.finished = null;
         }
+    }
+
+    public int getTaskId() {
+        return this.id;
     }
 }
