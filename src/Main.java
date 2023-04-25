@@ -64,10 +64,10 @@ public class Main {
         int option = sca.nextInt();
         switch (option) {
             case 1:
-                createManager();
+                Manager.createManager();
                 break;
             case 2:
-                createTrainer();
+                Trainer.createTrainer();
                 break;
             default:
                 System.out.println("wrong number!");
@@ -76,90 +76,6 @@ public class Main {
         }
     }
 
-
-    private static void createTrainer() {
-        Scanner sca = new Scanner(System.in);
-
-        System.out.print("Enter Trainer's first name: ");
-        String firstName = sca.next();
-
-        System.out.print("Enter Trainer's last name: ");
-        String lastName = sca.next();
-
-        System.out.print("Enter Trainer's birth date (yyyy-mm-dd): ");
-        String birthDateStr = sca.next();
-        Date birthDate = java.sql.Date.valueOf(birthDateStr);
-
-        System.out.print("Enter Trainer's department ID (0 for IT, 1 for HR): ");
-        int deptId = sca.nextInt();
-        Department dept = Department.getDepartment(deptId);
-
-        System.out.print("Enter Trainer's speciality: ");
-        String speciality = sca.next();
-
-        Trainer trainer = new Trainer(firstName, lastName, birthDate, dept, speciality);
-        Trainer.trainers.add(trainer);
-        Employee.employees.add(trainer);
-
-        System.out.println("New Trainer created: " + trainer);
-
-        showEmployees(false);
-    }
-
-    private static void createManager() {
-        Scanner scanner = new Scanner(System.in);
-
-        System.out.print("Enter Manager's first name: ");
-        String firstName = scanner.nextLine();
-
-        System.out.print("Enter Manager's last name: ");
-        String lastName = scanner.nextLine();
-
-        System.out.print("Enter Manager's date of birth (yyyy-mm-dd): ");
-        String birth = scanner.nextLine();
-        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-dd-MM");
-        Date birthDate = null;
-        try {
-            birthDate = formatter.parse(birth);
-        } catch (ParseException e) {
-            throw new RuntimeException(e);
-        }
-
-        System.out.print("Enter Manager's department ID (0 for IT, 1 for HR): ");
-        Department department = Department.getDepartment(scanner.nextInt());
-
-        System.out.print("Enter Manager's username: ");
-        String username = scanner.nextLine();
-
-        System.out.print("Enter Manager's password: ");
-        String password = scanner.nextLine();
-
-        Manager manager = new Manager(firstName, lastName, birthDate, department, username, password);
-
-        Manager.managers.add(manager);
-        Employee.employees.add(manager);
-
-        System.out.println("New Manager created: " + manager);
-        showEmployees(true);
-
-    }
-
-    private static void showEmployees(boolean isManagerial) {
-        if (isManagerial) {
-            System.out.println("Active managers: ");
-            for (Manager manager : Manager.managers) {
-                System.out.println(manager);
-            }
-            System.out.println("------");
-        } else {
-            System.out.println("Active trainers: ");
-            for (Trainer trainer : Trainer.trainers) {
-                System.out.println(trainer);
-            }
-            System.out.println("------");
-        }
-
-    }
 
     // ------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -170,52 +86,19 @@ public class Main {
         int option = sca.nextInt();
         switch (option) {
             case 1:
-                createTeam();
+                Team.createTeam();
                 break;
             case 2:
-                addEmpToTeam();
+                Team.addEmpToTeam();
                 break;
             case 3:
-                showTeams();
+                Team.showTeams();
                 break;
             default:
                 System.out.println("wrong number!");
                 startProgramm();
                 break;
         }
-    }
-
-    public static void createTeam() {
-        Scanner sca = new Scanner(System.in);
-        System.out.print("Team name: ");
-        String name = sca.next();
-        System.out.print("Provide Manager name: ");
-        String managerName = sca.next();
-        Manager manager = Manager.getManagerByName(managerName);
-        Team team = new Team(name, manager);
-        manager.assignTeam(team);
-        Team.teams.add(team);
-        System.out.println("Team " + team.getName() + " successfully created!");
-        showTeams();
-    }
-
-    private static void showTeams() {
-        System.out.println("Active teams: ");
-        for (Team team : Team.teams) {
-            System.out.println(team);
-        }
-        System.out.println("------");
-    }
-
-    private static void addEmpToTeam() {
-        Scanner sca = new Scanner(System.in);
-        System.out.println("Provide team ID:");
-        int id = sca.nextInt();
-        Team team = Team.teams.get(id);
-        System.out.println("Provide emp ID:");
-        int empId = sca.nextInt();
-        Employee emp = Employee.employees.get(empId);
-        team.addEmployee(emp);
     }
 
     // ------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -227,16 +110,16 @@ public class Main {
         int option = sca.nextInt();
         switch (option) {
             case 1:
-                createTask();
+                Task.createTask();
                 break;
             case 2:
-                runTask();
+                Task.runTask();
                 break;
             case 3:
-                getWork();
+                Work.getWork();
                 break;
             case 4:
-                startWork();
+                Work.startWork();
                 break;
             default:
                 System.out.println("wrong number!");
@@ -244,56 +127,4 @@ public class Main {
                 break;
         }
     }
-
-
-    private static void createTask() {
-        Scanner scanner = new Scanner(System.in);
-
-        System.out.println("Enter task name:");
-        String name = scanner.nextLine();
-
-        System.out.println("Enter task description:");
-        String desc = scanner.nextLine();
-
-        Task task = new Task(name, desc);
-        Work.allTasks.put(task.getTaskId(),task);
-
-        System.out.println("Task " + task.getName() + " successfully created!");
-        showTasks();
-
-    }
-
-    private static void showTasks() {
-        System.out.println(Work.allTasks);
-    }
-
-    private static void runTask() {
-        Scanner sca = new Scanner(System.in);
-        System.out.println("Provide team which will execute this task:");
-        int index = sca.nextInt();
-        Team team = Team.teams.get(index);
-        System.out.println("Provide task name for team " + team.getName() + " : ");
-        String taskName = sca.next();
-        team.startTask(taskName);
-
-    }
-
-    private static void getWork() {
-        Scanner sca = new Scanner(System.in);
-        System.out.println("Provide task id");
-        int taskId = sca.nextInt();
-        Work work = Work.getTaskFromWork(taskId);
-        Work.works.add(work);
-        System.out.println("Work created!");
-    }
-    private static void startWork() {
-        Scanner sca = new Scanner(System.in);
-        System.out.println("Please provide work id: ");
-        int workId = sca.nextInt();
-        Work work = Work.works.get(workId);
-        work.startAllTasks();
-        System.out.println("All task for this work should be done");
-    }
-
-
 }

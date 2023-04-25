@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Scanner;
 
 public class Work implements Runnable {
     //dla kazdej klasy stworz id i counter(static) oraz metode tostring
@@ -45,20 +46,40 @@ public class Work implements Runnable {
         allTasks.put(taskId, task);
     }
 
-    public void startAllTasks(){
+    public void startAllTasks() {
         this.tasks.stream().filter(e -> e.getStatus() != Status.NEW).forEach(task -> task.run());
-        for(Task task : this.tasks){
-            if(task.getStatus() != Status.NEW){
+        for (Task task : this.tasks) {
+            if (task.getStatus() != Status.NEW) {
                 task.run();
-            }else{
+            } else {
                 System.out.println("Task in status: " + Status.NEW + " cannot be started before approval!");
             }
         }
     }
+// -----------------------------------------------------------
 
+    public static void getWork() {
+        Scanner sca = new Scanner(System.in);
+        System.out.println("Provide task id");
+        int taskId = sca.nextInt();
+        Work work = Work.getTaskFromWork(taskId);
+        Work.works.add(work);
+        System.out.println("Work created!");
+    }
+
+    public static void startWork() {
+        Scanner sca = new Scanner(System.in);
+        System.out.println("Please provide work id: ");
+        int workId = sca.nextInt();
+        Work work = Work.works.get(workId);
+        work.startAllTasks();
+        System.out.println("All task for this work should be done");
+    }
+
+    //-------------------------------------------------------------------
     @Override
     public void run() {
-        System.out.println("Work: "+ this.getDesc() + " started...");
+        System.out.println("Work: " + this.getDesc() + " started...");
         this.startAllTasks();
         System.out.println("Work ended.");
     }

@@ -1,6 +1,9 @@
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Scanner;
 
 public class Manager extends Recepcionist{
 
@@ -53,6 +56,48 @@ public class Manager extends Recepcionist{
     public void setTask(Task task){
         this.tasks.add(task);
     }
+
+
+    //-------------------------------------------------------------------------------------------------
+    public static void createManager() {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Enter Manager's first name: ");
+        String firstName = scanner.nextLine();
+
+        System.out.print("Enter Manager's last name: ");
+        String lastName = scanner.nextLine();
+
+        System.out.print("Enter Manager's date of birth (yyyy-mm-dd): ");
+        String birth = scanner.nextLine();
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-dd-MM");
+        Date birthDate = null;
+        try {
+            birthDate = formatter.parse(birth);
+        } catch (ParseException e) {
+            throw new RuntimeException(e);
+        }
+
+        System.out.print("Enter Manager's department ID (0 for IT, 1 for HR): ");
+        Department department = Department.getDepartment(scanner.nextInt());
+
+        System.out.print("Enter Manager's username: ");
+        String username = scanner.nextLine();
+
+        System.out.print("Enter Manager's password: ");
+        String password = scanner.nextLine();
+
+        Manager manager = new Manager(firstName, lastName, birthDate, department, username, password);
+
+        Manager.managers.add(manager);
+        Employee.employees.add(manager);
+
+        System.out.println("New Manager created: " + manager);
+        Employee.showEmployees(true);
+
+    }
+
+    //-------------------------------------------------------------------------------------------------
 
     @Override
     public String toString() {

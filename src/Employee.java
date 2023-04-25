@@ -29,6 +29,28 @@ abstract class Employee implements Comparable<Employee> {
         this.healthy = false;
     }
 
+    // -----------------------------------------------------
+
+
+
+    public static void showEmployees(boolean isManagerial) {
+        if (isManagerial) {
+            System.out.println("Active managers: ");
+            for (Manager manager : Manager.managers) {
+                System.out.println(manager);
+            }
+            System.out.println("------");
+        } else {
+            System.out.println("Active trainers: ");
+            for (Trainer trainer : Trainer.trainers) {
+                System.out.println(trainer);
+            }
+            System.out.println("------");
+        }
+
+    }
+    // -------------------------------------------------
+
     @Override
     public int compareTo(Employee comparedEmployee) {
         int comparison = this.experience - comparedEmployee.experience;

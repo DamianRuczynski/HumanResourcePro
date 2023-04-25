@@ -1,5 +1,6 @@
 import java.sql.SQLOutput;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Team {
 
@@ -70,6 +71,44 @@ public class Team {
         }
         this.tasks.stream().filter(e -> e.name.equals(name)).forEach(e -> e.run());
     }
+
+    // ----------------------------------------------------------------------------------
+
+
+    public static void createTeam() {
+        Scanner sca = new Scanner(System.in);
+        System.out.print("Team name: ");
+        String name = sca.next();
+        System.out.print("Provide Manager name: ");
+        String managerName = sca.next();
+        Manager manager = Manager.getManagerByName(managerName);
+        Team team = new Team(name, manager);
+        manager.assignTeam(team);
+        Team.teams.add(team);
+        System.out.println("Team " + team.getName() + " successfully created!");
+        showTeams();
+    }
+
+    public static void showTeams() {
+        System.out.println("Active teams: ");
+        for (Team team : Team.teams) {
+            System.out.println(team);
+        }
+        System.out.println("------");
+    }
+
+    public static void addEmpToTeam() {
+        Scanner sca = new Scanner(System.in);
+        System.out.println("Provide team ID:");
+        int id = sca.nextInt();
+        Team team = Team.teams.get(id);
+        System.out.println("Provide emp ID:");
+        int empId = sca.nextInt();
+        Employee emp = Employee.employees.get(empId);
+        team.addEmployee(emp);
+    }
+
+    // -----------------------------------------------------------------------------------
 
     @Override
     public String toString() {

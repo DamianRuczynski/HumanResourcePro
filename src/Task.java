@@ -2,6 +2,7 @@ import jdk.jshell.Snippet;
 
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.util.Scanner;
 
 public class Task extends Thread {
     static int counter = 0;
@@ -49,7 +50,41 @@ public class Task extends Thread {
     public String getDescription() {
         return this.desc;
     }
+    // --------------------------------------------------------------
 
+    public static void createTask() {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Enter task name:");
+        String name = scanner.nextLine();
+
+        System.out.println("Enter task description:");
+        String desc = scanner.nextLine();
+
+        Task task = new Task(name, desc);
+        Work.allTasks.put(task.getTaskId(),task);
+
+        System.out.println("Task " + task.getName() + " successfully created!");
+        showTasks();
+
+    }
+
+    private static void showTasks() {
+        System.out.println(Work.allTasks);
+    }
+
+    public static void runTask() {
+        Scanner sca = new Scanner(System.in);
+        System.out.println("Provide team which will execute this task:");
+        int index = sca.nextInt();
+        Team team = Team.teams.get(index);
+        System.out.println("Provide task name for team " + team.getName() + " : ");
+        String taskName = sca.next();
+        team.startTask(taskName);
+
+    }
+
+    // ----------------------------------
 
     @Override
     public void run() {
