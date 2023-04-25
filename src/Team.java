@@ -2,14 +2,31 @@ import java.sql.SQLOutput;
 import java.util.ArrayList;
 
 public class Team {
+
+    static int counter = 0;
+    private final int id;
     String name;
     Manager manager;
     ArrayList<Employee> employees = new ArrayList<Employee>();
     ArrayList<Task> tasks = new ArrayList<Task>();
 
     public Team(String name, Manager manager){
+        this.id = counter;
         this.name = name;
         this.manager = manager;
+        counter++;
+    }
+
+    public String getName() {
+        return this.name;
+    }
+
+    public String getTasks() {
+        String message = "Tasks in team " + this.name +": ";
+        for(Task task : tasks){
+            message += " \n- " + task.getTaskName() + " ";
+        }
+        return message;
     }
 
     public void addEmployee(Employee emp){
@@ -35,17 +52,6 @@ public class Team {
             System.out.println("Task correctly added: " + task.getTaskName() + ".");
         }
     }
-    public String getName() {
-        return this.name;
-    }
-
-    public String getTasks() {
-        String message = "Tasks in team " + this.name +": ";
-        for(Task task : tasks){
-            message += " \n- " + task.getTaskName() + " ";
-        }
-        return message;
-    }
 
 
     private boolean checkIfEmpIsManager(Employee emp){
@@ -62,5 +68,15 @@ public class Team {
             return;
         }
         this.tasks.stream().filter(e -> e.name.equals(name)).forEach(e -> e.run());
+    }
+
+    @Override
+    public String toString() {
+        return "Team{" +
+                ", name='" + name + '\'' +
+                ", manager=" + manager +
+                ", employees=" + employees +
+                ", tasks=" + tasks +
+                '}';
     }
 }

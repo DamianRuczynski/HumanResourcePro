@@ -2,41 +2,67 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Work implements Runnable{
+public class Work implements Runnable {
     //dla kazdej klasy stworz id i counter(static) oraz metode tostring
-    static int counter = 0;
-    int taskCounter = 0;
-    int id;
-//    ArrayList<Task> tasks = new ArrayList<Task>();
-    Map<Integer, Task> tasks = new HashMap<>();
-    Map<Task, Work> taskWorkMap = new HashMap<>();
-    String desc;
-    Team team;
+    private static int counter = 0;
+    private final int id;
+    static Map<Integer, Task> allTasks = new HashMap<>();
+    private ArrayList<Task> tasks = new ArrayList<Task>();
+    private String desc;
+    private Team team;
 
-    Work(String desc, Team team){
+    Work(String desc, Team team) {
         this.id = counter;
         counter++;
         this.desc = desc;
-        this.team= team;
+        this.team = team;
     }
 
-    public void addTask(Task task){
+    Work(String desc) {
+        this.id = counter;
+        counter++;
+        this.desc = desc;
+        this.team = null;
+    }
+
+
+    private String getDesc() {
+        return "\"" + this.desc + "\"";
+    }
+
+    public static Work getTaskFromWork(int taskId) {
+        if (allTasks.containsKey(taskId)) {
+            return new Work(allTasks.get(taskId).getDescription());
+        }
+        return null;
+    }
+
+    public void addTask(Task task) {
+        this.tasks.add(task);
         int taskId = task.getTaskId();
-        this.tasks.put(taskId, task);
+        allTasks.put(taskId, task);
     }
 
-//    public static Work getTaskFromWork(int id){ // zwracaj dane o pracy/prac ktore maja przypisane zadanie o danym id
-//        return tasks.containsKey(id) ? tasks.get(id) : null;
-//        return this;
-//    }
-
-//    public static Task getTaskInfo(int taskId){
-////        allWorks.stream().anyMatch(task -> task.id == taskId);
-////        tasks.
-//    };
+    public void startAllTasks(){
+        this.tasks.stream().filter(e -> e.getStatus() != Status.NEW).forEach(task -> task.run());
+        for(Task task : this.tasks){
+            if(task.getStatus() != Status.NEW){
+                task.run();
+            }else{
+                System.out.println("Task in status: " + Status.NEW + " cannot be started before approval!");
+            }
+        }
+    }
 
     @Override
     public void run() {
+        System.out.println("Work: "+ this.getDesc() + " started...");
+        this.startAllTasks();
+        System.out.println("Work ended.");
+    }
 
+    @Override
+    public String toString() {
+        return "Work: " + this.getDesc() + (this.team != null ? "worked by: " + this.team.getName() : "is not assigned to the team");
     }
 }

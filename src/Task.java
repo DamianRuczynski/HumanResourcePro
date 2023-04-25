@@ -20,6 +20,7 @@ public class Task extends Thread {
         this.desc = "";
         this.status = status.NEW;
     }
+
     Task(String name, String desc) {
         this.id = counter;
         counter++;
@@ -32,20 +33,23 @@ public class Task extends Thread {
         return "\"" + this.name + "\"";
     }
 
-    private Status getStatus() {
+    public Status getStatus() {
         return this.status;
     }
 
     private String getTime(LocalDateTime date) {
-        return date.getHour() + ":" + date.getMinute() + ":" + date.getSecond();
-//        return String.format("%d:%02d'%02d", date.getHour(), date.getMinute(), date.getSecond());
+        return String.format("%d:%02d'%02d", date.getHour(), date.getMinute(), date.getSecond());
+    }
+
+    public int getTaskId() {
+        return this.id;
     }
 
 
-    @Override
-    public String toString() {
-        return "Task: " + this.getTaskName() + "\nduration: " + this.durationTime + "\nhave status: " + this.status;
+    public String getDescription() {
+        return this.desc;
     }
+
 
     @Override
     public void run() {
@@ -71,7 +75,9 @@ public class Task extends Thread {
         }
     }
 
-    public int getTaskId() {
-        return this.id;
+    @Override
+    public String toString() {
+        return "Task: " + this.getTaskName() + "\nduration: " + this.durationTime + "\nhave status: " + this.status;
     }
+
 }

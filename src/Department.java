@@ -1,14 +1,18 @@
 import java.util.ArrayList;
 
 public class Department {
+    static int counter = 0;
+    private  final int id;
     private String name;
     private static ArrayList<Department> departments = new ArrayList<Department>();
 
-    Department(String name) throws NotUniqueException{
+    private Department(String name) throws NotUniqueException{
         for (Department dep: departments) {
             if(dep.name == name) throw new NotUniqueException("Department already exist");
         }
         this.name = name;
+        this.id = counter;
+        counter++;
     }
 
 
@@ -34,6 +38,7 @@ public class Department {
 
     @Override
     public String toString() {
-        return this.name;
+        return "Department: " + this.name;
     }
+
 }

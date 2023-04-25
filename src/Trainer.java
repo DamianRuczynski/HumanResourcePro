@@ -1,10 +1,15 @@
 import java.util.Date;
 
 public class Trainer extends Employee{
+
+    static int counter = 0;
+    private final int id;
     public String specialisation;
     public Trainer(String name, String surname, Date birth, Department dept, String specialisation){
         super(name, surname, birth, dept);
+        this.id = counter;
         this.specialisation = specialisation;
+        counter++;
     }
 
     @Override
