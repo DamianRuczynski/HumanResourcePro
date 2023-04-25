@@ -5,7 +5,7 @@ abstract class Employee implements Comparable<Employee> {
 
     static int counter = 0;
     private final int id;
-    protected static ArrayList<Employee> employees;
+    protected static ArrayList<Employee> employees = new ArrayList<Employee>();
     protected String name;
     protected String surname;
     protected Date dateOfBirth;

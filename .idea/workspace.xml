@@ -1,14 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="41311ca3-ef73-4f05-8f85-b69a4756797e" name="Changes" comment="create work class... a lot to do here">
+    <list default="true" id="41311ca3-ef73-4f05-8f85-b69a4756797e" name="Changes" comment="refactor classes, add id and tostring methods">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Department.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Department.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Employee.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Employee.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Manager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Manager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Recepcionist.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Recepcionist.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Status.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Status.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Task.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Task.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Team.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Team.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Trainer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Trainer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Work.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Work.java" afterDir="false" />
@@ -139,7 +136,14 @@
       <option name="project" value="LOCAL" />
       <updated>1682331763318</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="refactor classes, add id and tostring methods">
+      <created>1682408148788</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1682408148788</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -176,17 +180,7 @@
     <MESSAGE value="add run method to task, break if employee in team is ill" />
     <MESSAGE value="coorrections on task class" />
     <MESSAGE value="create work class... a lot to do here" />
-    <option name="LAST_COMMIT_MESSAGE" value="create work class... a lot to do here" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/Main.java</url>
-          <line>29</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+    <MESSAGE value="refactor classes, add id and tostring methods" />
+    <option name="LAST_COMMIT_MESSAGE" value="refactor classes, add id and tostring methods" />
   </component>
 </project>

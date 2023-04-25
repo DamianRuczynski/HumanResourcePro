@@ -8,6 +8,8 @@ public class Work implements Runnable {
     private final int id;
     static Map<Integer, Task> allTasks = new HashMap<>();
     private ArrayList<Task> tasks = new ArrayList<Task>();
+    public static ArrayList<Work> works = new ArrayList<Work>();
+
     private String desc;
     private Team team;
 

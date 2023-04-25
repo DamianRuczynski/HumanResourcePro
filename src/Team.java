@@ -5,12 +5,13 @@ public class Team {
 
     static int counter = 0;
     private final int id;
-    String name;
-    Manager manager;
-    ArrayList<Employee> employees = new ArrayList<Employee>();
-    ArrayList<Task> tasks = new ArrayList<Task>();
+    private String name;
+    private Manager manager;
+    private ArrayList<Employee> employees = new ArrayList<Employee>();
+    private ArrayList<Task> tasks = new ArrayList<Task>();
+    public static ArrayList<Team> teams = new ArrayList<Team>();
 
-    public Team(String name, Manager manager){
+    public Team(String name, Manager manager) {
         this.id = counter;
         this.name = name;
         this.manager = manager;
@@ -22,48 +23,48 @@ public class Team {
     }
 
     public String getTasks() {
-        String message = "Tasks in team " + this.name +": ";
-        for(Task task : tasks){
+        String message = "Tasks in team " + this.name + ": ";
+        for (Task task : tasks) {
             message += " \n- " + task.getTaskName() + " ";
         }
         return message;
     }
 
-    public void addEmployee(Employee emp){
-        if(checkIfEmpIsManager(emp)){
+    public void addEmployee(Employee emp) {
+        if (checkIfEmpIsManager(emp)) {
             System.out.println("Cannot add manager as an employee!!");/// tutaj trzeba zrobic throw CannotAddManagerException
-        }else{
+        } else {
             this.employees.add(emp);
             System.out.println("Employee " + emp.name + " correctly added to " + this.name);
         }
     }
 
-    public void addEmployee(Employee[] empList){
-        for(Employee emp : empList){
+    public void addEmployee(Employee[] empList) {
+        for (Employee emp : empList) {
             addEmployee(emp);
         }
     }
 
-    public void addTask(Task task){
-        if(this.tasks.contains(task)){
+    public void addTask(Task task) {
+        if (this.tasks.contains(task)) {
             System.out.println("Task: " + task.getTaskName() + " already in list!!"); // tutaj zrob throw
-        }else{
+        } else {
             this.tasks.add(task);
             System.out.println("Task correctly added: " + task.getTaskName() + ".");
         }
     }
 
 
-    private boolean checkIfEmpIsManager(Employee emp){
+    private boolean checkIfEmpIsManager(Employee emp) {
         return emp instanceof Manager;
     }
 
-    public boolean haveIllEmployee(){
+    public boolean haveIllEmployee() {
         return employees.stream().anyMatch(emp -> !emp.healthy);
     }
 
-    public void startTask(String name){
-        if(haveIllEmployee()) {
+    public void startTask(String name) {
+        if (haveIllEmployee()) {
             System.out.println("nie mozna wykonac zadania, poniewaz nie");
             return;
         }
@@ -72,11 +73,6 @@ public class Team {
 
     @Override
     public String toString() {
-        return "Team{" +
-                ", name='" + name + '\'' +
-                ", manager=" + manager +
-                ", employees=" + employees +
-                ", tasks=" + tasks +
-                '}';
+        return this.getName() + ", " + manager;
     }
 }

@@ -1,12 +1,14 @@
+
 import java.util.ArrayList;
 import java.util.Date;
 
 public class Manager extends Recepcionist{
 
+    public static ArrayList<Manager> managers = new ArrayList<Manager>();
     static int counter = 0;
     private final int id;
-    private ArrayList<Team> teams;
-    private ArrayList<Task> tasks;
+    private ArrayList<Team> teams = new ArrayList<Team>();
+    private ArrayList<Task> tasks = new ArrayList<Task>();
     private String initial;
 
     public Manager(String name, String surname, Date birth, Department dept, String login, String password) {
@@ -14,6 +16,10 @@ public class Manager extends Recepcionist{
         this.id = counter;
         this.initial = generateInitial(name, surname);
         counter++;
+    }
+
+    public static Manager getManagerByName(String managerName) {
+        return managers.stream().filter(e -> e.name.equals(managerName)).findFirst().orElse(null);
     }
 
     public String getTeams(){

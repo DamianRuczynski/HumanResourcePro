@@ -1,7 +1,11 @@
+
+
+import java.util.ArrayList;
 import java.util.Date;
 
 public class Trainer extends Employee{
 
+    public static ArrayList<Trainer> trainers = new ArrayList<Trainer>();
     static int counter = 0;
     private final int id;
     public String specialisation;
