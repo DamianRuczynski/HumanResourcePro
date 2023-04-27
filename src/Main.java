@@ -1,16 +1,15 @@
-import java.sql.SQLOutput;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.Scanner;
 
 public class Main {
+
+// hello, this is link to my github repo https://github.com/DamianRuczynski/HumanResourcePro
+
     public static void main(String[] args) {
 
         Department IT = createNewDepartment("IT");
         Department HR = createNewDepartment("HR");
         Task zadanko = new Task("Testowe zadanie");
-        Task zadanko2 = new Task("Bithces drip sossy");
+        Task zadanko2 = new Task(" Running");
 
         startProgramm();
 

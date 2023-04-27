@@ -66,7 +66,7 @@ public class Team {
 
     public void startTask(String name) {
         if (haveIllEmployee()) {
-            System.out.println("nie mozna wykonac zadania, poniewaz nie");
+            System.out.println("cannot start task with an ill employee!!");
             return;
         }
         this.tasks.stream().filter(e -> e.name.equals(name)).forEach(e -> e.run());

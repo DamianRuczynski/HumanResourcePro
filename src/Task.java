@@ -64,7 +64,7 @@ public class Task extends Thread {
         Task task = new Task(name, desc);
         Work.allTasks.put(task.getTaskId(),task);
 
-        System.out.println("Task " + task.getName() + " successfully created!");
+        System.out.println("Task " + task.getTaskName() + " successfully created!");
         showTasks();
 
     }

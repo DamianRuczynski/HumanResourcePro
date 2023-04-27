@@ -24,6 +24,21 @@ public class Recepcionist extends Employee {
     }
 
     @Override
+    public String askQuestions(Task task) {
+        return super.askQuestions(task);
+    }
+
+    @Override
+    public void workHard(Work work) {
+        System.out.println("I will talk with people and do excel faster!!");;
+    }
+
+    @Override
+    public void raiseHand() {
+        System.out.println("Sorry boss.. can i have 5 minutes break?");
+    }
+
+    @Override
     public String toString() {
         return "Recepcionist: " + this.getName();
     }

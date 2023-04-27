@@ -17,6 +17,10 @@ public class Trainer extends Employee{
         counter++;
     }
 
+    public String getAddedInfo(){
+        return "Employee " + this.name + " " + this.surname + " created! Belongs to " + this.departmentBelong + " and specialize in " + this.specialisation;
+    }
+
 
 
     //-------------------------------------------------------------------------------------------------
@@ -44,14 +48,29 @@ public class Trainer extends Employee{
         Trainer.trainers.add(trainer);
         Employee.employees.add(trainer);
 
-        System.out.println("New Trainer created: " + trainer);
+        System.out.println("New Trainer created: " + trainer.getAddedInfo());
 
         Employee.showEmployees(false);
     }
 
     //-------------------------------------------------------------------------------------------------
+
+    @Override
+    public String askQuestions(Task task) {
+        return super.askQuestions(task);
+    }
+
+    @Override
+    public void workHard(Work work) {
+        System.out.println("Work hard, play hard..!!");;
+    }
+
+    @Override
+    public void raiseHand() {
+        System.out.println("Sorry boss.. my people needs promotion");
+    }
     @Override
     public String toString() {
-        return "Employee " + this.name + " " + this.surname + " created! Belongs to " + this.departmentBelong + " and specialize in " + this.specialisation;
+        return this.name + this.surname + "specialized in: " + this.specialisation;
     }
 }

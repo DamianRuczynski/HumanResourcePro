@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 import java.util.Date;
 
-abstract class Employee implements Comparable<Employee> {
+abstract class Employee implements Comparable<Employee>, IGoodEmployee {
 
     static int counter = 0;
     private final int id;
@@ -20,6 +20,22 @@ abstract class Employee implements Comparable<Employee> {
         this.dateOfBirth = birth;
         this.departmentBelong = dept;
         counter++;
+    }
+
+    @Override
+    public void workHard(Work work) {
+        work.startAllTasks();
+        System.out.println(this.name + " working hard at task: " + work.toString());
+    }
+
+    @Override
+    public String askQuestions(Task task) {
+        return task.getName() + " is asked, you have to do: " + task.desc;
+    }
+
+    @Override
+    public void raiseHand() {
+        System.out.println("Hand raised");
     }
 
     public String getName() {
